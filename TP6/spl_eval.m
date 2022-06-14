@@ -37,4 +37,5 @@ function fo = spl_eval(xo,x,s)
         fo = s(i,1)*(x(i+1)-xo)^3 + s(i,2)*(xo-x(i))^3 + ...
              s(i,3)*(xo-x(i)) + s(i,4);
     end
+end
     
