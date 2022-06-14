@@ -1,21 +1,21 @@
-function [x it ] = dico(f ,a ,b , tol )
+function [x it] = dico(f ,a ,b , tol )
 % X = dico (F,A,B,TOL)
-% dé termine un zéro de la fonction F(X) d'une
+% dÃ© termine un zÃ©ro de la fonction F(X) d'une
 % variable dans l' intervalle [A,B] si
 % la condition suivante ( condition de " bracketing ")
 % F(A)*F(B) < 0
 % est satisfaite ;
 % arguments :
-% F - la fonction dont on dé termine un zéro
-% A,B - les extr é mit és de l' intervalle sur lequel
-% on cherche un zéro
-% TOL - la pré cision absolue avec laquelle on
-% dé termine un zéro
+% F - la fonction dont on dÃ© termine un zÃ©ro
+% A,B - les extr Ã© mit Ã©s de l' intervalle sur lequel
+% on cherche un zÃ©ro
+% TOL - la prÃ© cision absolue avec laquelle on
+% dÃ© termine un zÃ©ro
 % sortie :
-% X - l' approximation calcul ée du zéro
-% IT - nombre d'ité rations utilis ées
+% X - l' approximation calcul Ã©e du zÃ©ro
+% IT - nombre d'itÃ© rations utilis Ã©es
   if ( f( a ) * f ( b ) >= 0)
-    error ('f(a)*f(b) doit ê tre < 0')
+    error ('f(a)*f(b) doit Ãª tre < 0')
   else
     it = 0;
     while ( abs (a - b ) > tol )
@@ -30,4 +30,4 @@ function [x it ] = dico(f ,a ,b , tol )
       end
     end
   end
-endfunction
+end
