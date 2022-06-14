@@ -1,2 +1,2 @@
 # ANANUM
-Cours d'analyse numérique BA2, algorithme et résolution.
+Cours d'analyse numérique BA2, algorithmes et résolutions.
