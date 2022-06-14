@@ -1,22 +1,22 @@
-function [ x it ] = regfal (f ,a ,b , res , maxit )
+function [x it] = regfal(f ,a ,b , res , maxit )
 % X = regfal (F,A,B,RES , MAXIT ) fausse position
-% dé termine un zéro de la fonction F(X) d'une
+% dÃ© termine un zÃ©ro de la fonction F(X) d'une
 % variable dans l' intervalle [A,B] si
 % la condition suivante ( condition de " bracketing ")
 % F(A)*F(B) < 0
 % est satisfaite ;
 % arguments :
-% F - la fonction dont on dé termine un zéro
-% A,B - les extr é mit és de l' intervalle sur lequel
-% on cherche un zéro
-% RES - la mé thode s' arr ête si |F(X)| <= RES
-% MAXIT - le nombre maximal d 'é valuations de F
+% F - la fonction dont on dÃ© termine un zÃ©ro
+% A,B - les extr Ã© mit Ã©s de l' intervalle sur lequel
+% on cherche un zÃ©ro
+% RES - la mÃ© thode s' arr Ãªte si |F(X)| <= RES
+% MAXIT - le nombre maximal d 'Ã© valuations de F
 % sortie :
-% X - l' approximation calcul ée du zéro
-% IT - nombre d'ité rations utilis ées
+% X - l' approximation calcul Ã©e du zÃ©ro
+% IT - nombre d'itÃ© rations utilis Ã©es
 % R - valeur de |F(X)|
   if ( f( a ) * f ( b ) >= 0)
-    error ('f(a)*f(b) doit être < 0')
+    error ('f(a)*f(b) doit Ãªtre < 0')
   else
     for it =1: maxit
       x = a - (b - a ) *f ( a ) /( f ( b ) -f ( a ) ) ;
@@ -30,4 +30,4 @@ function [ x it ] = regfal (f ,a ,b , res , maxit )
       end
     end
   end
-endfunction
+end
