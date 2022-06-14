@@ -1,11 +1,11 @@
 function tp6pb
-   % générer les données & les représenter via plot
+   % gÃ©nÃ©rer les donnÃ©es & les reprÃ©senter via plot
 x = [1,2,3,4,5,6];
 f = rand(length(x),1);
 plot(x,f,'*r'); hold on;
    % construire la fonction d'interpolation 
 s = spl_interpol(x,f);
-   % représenter la fonction d'interpolation 
+   % reprÃ©senter la fonction d'interpolation 
 xr = x(1)+[0:0.01:1]*(x(end)-x(1));
 for i = 1:length(xr)
     fr(i) = spl_eval(xr(i), x, s);
@@ -16,72 +16,73 @@ hold off
 
 function fo = spl_eval(xo,x,s)
 % FO = spl_eval(XO,X,S)
-%    la fonction renvoie la valeur FO d'un polynôme cubique
-%    par morceaux qui est définit par les N abscisses 
+%    la fonction renvoie la valeur FO d'un polynÃ´me cubique
+%    par morceaux qui est dÃ©finit par les N abscisses 
 %    X(1), ..., X(N) et les parametres S(i,:) du polynome
 %    entre les deux abscisses X(i) et X(i+1) successives
 %    
 % arguments:
-%    XO- l'abscisse où on veut évaluer le polynôme cubique
-%        par morceaux; X0 doit être entre X(1) et X(N)
+%    XO- l'abscisse oÃ¹ on veut Ã©valuer le polynÃ´me cubique
+%        par morceaux; X0 doit Ãªtre entre X(1) et X(N)
 %    X - le vecteur de taille N x 1 qui contient
-%        les points d'interpolation; on demande à ce que
+%        les points d'interpolation; on demande Ã  ce que
 %        N > 1 et X(1) < X(2) < ... < X(N)
 %    S - S(i,1), S(i,2), S(i,3) et S(i,4), i=1,...,N - 1
-%        sont les parametres qui definissent le polynôme 
+%        sont les parametres qui definissent le polynÃ´me 
 %        d'interpolation entre les abscisses X(i) et X(i+1)
 %
 % sortie:
-%    FO- valeur d'un polynôme cubique par morceaux 
+%    FO- valeur d'un polynÃ´me cubique par morceaux 
 %        au point XO
 %
     n = length(x);
     if (n < 3)
-        error(['Le nombre d"éléments de X doit être > 2']);
+        error(['Le nombre d"Ã©lÃ©ments de X doit Ãªtre > 2']);
     elseif (min(size(x))~=1)
-        error(['X doit être un vecteur']);        
+        error(['X doit Ãªtre un vecteur']);        
     elseif (size(s,1)~=n-1)
         error(['La matrice S doit avoir ',int2str(n-1),' lignes']);
     elseif (size(s,2)~=4)
         error(['La matrice S doit avoir 4 colonnes']);
     elseif (xo < x(1) || xo > x(n))
-        error(['XO doit être entre X(1) et X(N)']);
+        error(['XO doit Ãªtre entre X(1) et X(N)']);
     elseif (min( x(2:n)-x(1:n-1) ) <= 0)
-        error(['X(i) doit être un vecteur strictement croissant']);
+        error(['X(i) doit Ãªtre un vecteur strictement croissant']);
     else
         i = min(max( find(x <= xo) ), n - 1);
         fo = s(i,1)*(x(i+1)-xo)^3 + s(i,2)*(xo-x(i))^3 + ...
              s(i,3)*(xo-x(i)) + s(i,4);
     end
+end
     
 function s = spl_interpol(x,y)
 % S = spl_interpol(X,Y) 
-%    la fonction determine le polynôme cubique par morceaux 
+%    la fonction determine le polynÃ´me cubique par morceaux 
 %    qui passe par N points (X(1), Y(1)),...,(X(N), Y(N)); 
-%    le polynôme entre les deux abscisses X(i) et X(i+1) 
+%    le polynÃ´me entre les deux abscisses X(i) et X(i+1) 
 %    est defini via les parametres par S(i,1),..., S(i,4)
 %    
 % arguments:
 %    X - le vecteur de taille N x 1 qui contient
-%        les points d'interpolation; on demande à ce que
+%        les points d'interpolation; on demande Ã  ce que
 %        N > 2 et X(1) < X(2) < ... < X(N)
 %    Y - le vecteur de taille N x 1 qui contient
 %        les valeurs aux points d'interpolation;
 %
 % sortie:
 %    S - S(i,1), S(i,2), S(i,3) et S(i,4), i=1,...,N - 1
-%        sont les parametres qui specifient le polynôme
+%        sont les parametres qui specifient le polynÃ´me
 %        d'interpolation entre les abscisses X(i) et X(i+1)
 %
     n = length(x);
     if (n < 3)
-        error(['Le nombre d"éléments de X doit être > 2']);
+        error(['Le nombre d"Ã©lÃ©ments de X doit Ãªtre > 2']);
     elseif (min(size(x))~=1 || min(size(y))~=1)
-        error(['les arguments doivent être des vecteurs']);        
+        error(['les arguments doivent Ãªtre des vecteurs']);        
     elseif (length(y) ~= n)
-        error(['Les vecteurs X & Y doivent avoir la même taille']);
+        error(['Les vecteurs X & Y doivent avoir la mÃªme taille']);
     elseif (min( x(2:n)-x(1:n-1) ) <= 0)
-        error(['X(i) doit être un vecteur strictement croissant']);
+        error(['X(i) doit Ãªtre un vecteur strictement croissant']);
     else 
         % on manipule vecteurs-colonnes
         if(size(x,2)~=1) x = x'; end;
@@ -97,7 +98,7 @@ function s = spl_interpol(x,y)
             ((y(3:end)-y(2:end-1))./hp-(y(2:end-1)-y(1:end-2))./hm);
         d(1) = d(2)/2; d(n) = d(n-1)/2;
         d = d';
-           % détermination des parametres
+           % dÃ©termination des parametres
         A = 2*diag(ones(n,1)) + diag(mu,-1) + diag(lb,1);
         [u itr rr] = gs_3diag(A,d,1e-3,1000,zeros(length(d),1));
         s(:,1) = u(1:n-1)./h./6;
@@ -105,18 +106,19 @@ function s = spl_interpol(x,y)
         s(:,3) = (y(2:n)-y(1:n-1))./h-(u(2:n)-u(1:n-1)).*h./6;    
         s(:,4) = y(1:n-1)-u(1:n-1).*h.*h./6;    
     end
+end
     
 function [ x iter rr ] = gs_3diag (A ,b , tol , maxit , xo )
 % X = gs_3diag (A,B,TOL ,MAXIT ,XO)
-% applique la methode de Gauss - Seidel � un syst�me
+% applique la methode de Gauss - Seidel à un système
 % tridiagonal AX=B avec XO comme approximation initiale
-% de la solution ; utilise comme crit �re d' arr �t le r� sidu
+% de la solution ; utilise comme crit ère d' arr êt le ré sidu
 1
-% relatif en norme euclidienne inf � rieur � TOL ou le
-% d� passement du nombre maximal MAXIT d'it� rations ; mis �
-% part la solution approch �e X la fonction retourne le
-% nombre d'it� rations ITER et le r� sidu relatif RR
-% correspondant � X.
+% relatif en norme euclidienne inf é rieur à TOL ou le
+% dé passement du nombre maximal MAXIT d'ité rations ; mis à
+% part la solution approch ée X la fonction retourne le
+% nombre d'ité rations ITER et le ré sidu relatif RR
+% correspondant à X.
   n = length ( b ) ;
   x = xo ;
   for iter = 1: maxit
