@@ -5,4 +5,3 @@ function y = fonction1(x)
   else 
     y = (1-cos(x))/x;
   end
-endfunction
