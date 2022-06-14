@@ -13,4 +13,4 @@ function [L U] = an_lu (A);
       end
     end
   end
-endfunction
+end
