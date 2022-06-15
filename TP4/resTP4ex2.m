@@ -12,7 +12,7 @@ Asv = A;
 
 %Etape 1 
 
-v1 = A(1 : 4,1);
+v1 = A(1 : 4, 1);
 v1(1) = v1(1) + sign(v1(1)) * norm(v1);
 v1 = v1 / norm(v1);
 

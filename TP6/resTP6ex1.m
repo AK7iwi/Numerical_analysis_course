@@ -1,11 +1,8 @@
 function tp6pb
-   % gÃ©nÃ©rer les donnÃ©es & les reprÃ©senter via plot
 x = [1,2,3,4,5,6];
 f = rand(length(x),1);
-plot(x,f,'*r'); hold on;
-   % construire la fonction d'interpolation 
+plot(x,f,'*r'); hold on; 
 s = spl_interpol(x,f);
-   % reprÃ©senter la fonction d'interpolation 
 xr = x(1)+[0:0.01:1]*(x(end)-x(1));
 for i = 1:length(xr)
     fr(i) = spl_eval(xr(i), x, s);
@@ -15,26 +12,6 @@ hold off
 
 
 function fo = spl_eval(xo,x,s)
-% FO = spl_eval(XO,X,S)
-%    la fonction renvoie la valeur FO d'un polynÃ´me cubique
-%    par morceaux qui est dÃ©finit par les N abscisses 
-%    X(1), ..., X(N) et les parametres S(i,:) du polynome
-%    entre les deux abscisses X(i) et X(i+1) successives
-%    
-% arguments:
-%    XO- l'abscisse oÃ¹ on veut Ã©valuer le polynÃ´me cubique
-%        par morceaux; X0 doit Ãªtre entre X(1) et X(N)
-%    X - le vecteur de taille N x 1 qui contient
-%        les points d'interpolation; on demande Ã  ce que
-%        N > 1 et X(1) < X(2) < ... < X(N)
-%    S - S(i,1), S(i,2), S(i,3) et S(i,4), i=1,...,N - 1
-%        sont les parametres qui definissent le polynÃ´me 
-%        d'interpolation entre les abscisses X(i) et X(i+1)
-%
-% sortie:
-%    FO- valeur d'un polynÃ´me cubique par morceaux 
-%        au point XO
-%
     n = length(x);
     if (n < 3)
         error(['Le nombre d"Ã©lÃ©ments de X doit Ãªtre > 2']);
@@ -56,24 +33,6 @@ function fo = spl_eval(xo,x,s)
 end
     
 function s = spl_interpol(x,y)
-% S = spl_interpol(X,Y) 
-%    la fonction determine le polynÃ´me cubique par morceaux 
-%    qui passe par N points (X(1), Y(1)),...,(X(N), Y(N)); 
-%    le polynÃ´me entre les deux abscisses X(i) et X(i+1) 
-%    est defini via les parametres par S(i,1),..., S(i,4)
-%    
-% arguments:
-%    X - le vecteur de taille N x 1 qui contient
-%        les points d'interpolation; on demande Ã  ce que
-%        N > 2 et X(1) < X(2) < ... < X(N)
-%    Y - le vecteur de taille N x 1 qui contient
-%        les valeurs aux points d'interpolation;
-%
-% sortie:
-%    S - S(i,1), S(i,2), S(i,3) et S(i,4), i=1,...,N - 1
-%        sont les parametres qui specifient le polynÃ´me
-%        d'interpolation entre les abscisses X(i) et X(i+1)
-%
     n = length(x);
     if (n < 3)
         error(['Le nombre d"Ã©lÃ©ments de X doit Ãªtre > 2']);
@@ -98,7 +57,7 @@ function s = spl_interpol(x,y)
             ((y(3:end)-y(2:end-1))./hp-(y(2:end-1)-y(1:end-2))./hm);
         d(1) = d(2)/2; d(n) = d(n-1)/2;
         d = d';
-           % dÃ©termination des parametres
+           % d�termination des parametres
         A = 2*diag(ones(n,1)) + diag(mu,-1) + diag(lb,1);
         [u itr rr] = jac_3diag(A,d,1e-3,1000,zeros(length(d),1));
         s(:,1) = u(1:n-1)./h./6;
@@ -109,15 +68,6 @@ function s = spl_interpol(x,y)
  end
        
 function [ x iter rr ] = jac_3diag (A ,b , tol , maxit , xo )
-% X = jac_3diag (A,B,TOL ,MAXIT ,XO)
-% applique la methode de Jacobi à un syst ème
-% tridiagonal AX=B avec XO comme approximation initiale
-% de la solution ; utilise comme crit ère d' arrêt le résidu
-% relatif en norme euclidienne inf é rieur à TOL ou le
-% dé passement du nombre maximal MAXIT d'ité rations ; mis à
-% part la solution approch ée X la fonction retourne le
-% nombre d'ité rations ITER et le ré sidu relatif RR
-% correspondant à X.
   n = length ( b ) ;
   x = zeros (n ,1) ; % pour donner la forme d'un vecteur colonne
   for iter = 1: maxit
@@ -130,9 +80,6 @@ function [ x iter rr ] = jac_3diag (A ,b , tol , maxit , xo )
     xo = x ;
     % calcul du residu
     r = b - A * x ;
-    % ou pour ne tenir compte que des 3 diagonales
-    % r = b - diag (A).*x - diag (A ,1) .*x (2: end) ...
-    % - diag (A , -1) .*x(1: end -1) ;
     rr = norm ( r ) / norm ( b ) ;
     if ( rr <= tol )
       break

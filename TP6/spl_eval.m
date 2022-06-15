@@ -1,24 +1,4 @@
 function fo = spl_eval(xo,x,s)
-% FO = spl_eval(XO,X,S)
-%    la fonction renvoie la valeur FO d'un polynôme cubique
-%    par morceaux qui est définit par les N abscisses 
-%    X(1), ..., X(N) et les parametres S(i,:) du polynome
-%    entre les deux abscisses X(i) et X(i+1) successives
-%    
-% arguments:
-%    XO- l'abscisse où on veut évaluer le polynôme cubique
-%        par morceaux; X0 doit être entre X(1) et X(N)
-%    X - le vecteur de taille N x 1 qui contient
-%        les points d'interpolation; on demande à ce que
-%        N > 1 et X(1) < X(2) < ... < X(N)
-%    S - S(i,1), S(i,2), S(i,3) et S(i,4), i=1,...,N - 1
-%        sont les parametres qui definissent le polynôme 
-%        d'interpolation entre les abscisses X(i) et X(i+1)
-%
-% sortie:
-%    FO- valeur d'un polynôme cubique par morceaux 
-%        au point XO
-%
     n = length(x);
     if (n < 3)
         error(['Le nombre d"éléments de X doit être > 2']);
