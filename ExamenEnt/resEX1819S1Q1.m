@@ -65,8 +65,8 @@ Q(1:5,1:5) = Q(1:5,1:5) - v1 * (2 *(v1' * Q(1:5,1:5))) ;
 %Verification 
 
 [q r] = qr(Asv);
-norm(Q-q);
-norm(R-r);
+norm(Q-q)
+norm(R-r)
 
 
 y = R\(Q'*b);
