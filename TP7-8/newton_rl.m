@@ -1,4 +1,4 @@
-function [x it r] = newton_rl (f , fp , x0 , res , maxit )
+function [x it r] = newton_rl(f , fp , x0 , res , maxit )
   x = x0 ;
   for it =1: maxit
     r = norm ( f ( x ) ) ;
@@ -6,7 +6,7 @@ function [x it r] = newton_rl (f , fp , x0 , res , maxit )
       it --;
       return ;
     elseif ( fp ( x ) == 0)
-      error ([ 'La mé thode a obtenu une dérivée nulle en x =', num2str ( x ) ]) ;
+      error ([ 'La methode a obtenu une d�rivable nulle en x =', num2str ( x ) ]) ;
     end
     d = fp ( x ) \ f ( x ) ;
     a = 1;

@@ -1,6 +1,6 @@
 function [x it] = regfal(f ,a ,b , res , maxit )
   if ( f( a ) * f ( b ) >= 0)
-    error ('f(a)*f(b) doit Ãªtre < 0')
+    error ('f(a)*f(b) doit être < 0')
   else
     for it =1: maxit
       x = a - (b - a ) *f ( a ) /( f ( b ) -f ( a ) ) ;

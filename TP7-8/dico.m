@@ -1,6 +1,6 @@
 function [x it] = dico(f ,a ,b , tol )
   if ( f( a ) * f ( b ) >= 0)
-    error ('f(a)*f(b) doit Ãª tre < 0')
+    error ('f(a)*f(b) doit être < 0')
   else
     it = 0;
     while ( abs (a - b ) > tol )
