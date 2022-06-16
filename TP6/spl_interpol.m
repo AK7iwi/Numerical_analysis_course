@@ -1,13 +1,13 @@
 function s = spl_interpol(x,y)
     n = length(x);
     if (n < 3)
-        error(['Le nombre d"Ã©lÃ©ments de X doit Ãªtre > 2']);
+        error(['Le nombre d elements de X doit être > 2']);
     elseif (min(size(x))~=1 || min(size(y))~=1)
-        error(['les arguments doivent Ãªtre des vecteurs']);        
+        error(['les arguments doivent être des vecteurs']);        
     elseif (length(y) ~= n)
-        error(['Les vecteurs X & Y doivent avoir la mÃªme taille']);
+        error(['Les vecteurs X & Y doivent avoir la même taille']);
     elseif (min( x(2:n)-x(1:n-1) ) <= 0)
-        error(['X(i) doit Ãªtre un vecteur strictement croissant']);
+        error(['X(i) doit être un vecteur strictement croissant']);
     else 
         % on manipule vecteurs-colonnes
         if(size(x,2)~=1) x = x'; end;

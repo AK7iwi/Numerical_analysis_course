@@ -14,17 +14,17 @@ hold off
 function fo = spl_eval(xo,x,s)
     n = length(x);
     if (n < 3)
-        error(['Le nombre d"Ã©lÃ©ments de X doit Ãªtre > 2']);
+        error(['Le nombre d elements de X doit �tre > 2']);
     elseif (min(size(x))~=1)
-        error(['X doit Ãªtre un vecteur']);        
+        error(['X doit �tre un vecteur']);        
     elseif (size(s,1)~=n-1)
         error(['La matrice S doit avoir ',int2str(n-1),' lignes']);
     elseif (size(s,2)~=4)
         error(['La matrice S doit avoir 4 colonnes']);
     elseif (xo < x(1) || xo > x(n))
-        error(['XO doit Ãªtre entre X(1) et X(N)']);
+        error(['XO doit �tre entre X(1) et X(N)']);
     elseif (min( x(2:n)-x(1:n-1) ) <= 0)
-        error(['X(i) doit Ãªtre un vecteur strictement croissant']);
+        error(['X(i) doit �tre un vecteur strictement croissant']);
     else
         i = min(max( find(x <= xo) ), n - 1);
         fo = s(i,1)*(x(i+1)-xo)^3 + s(i,2)*(xo-x(i))^3 + ...
@@ -35,13 +35,13 @@ end
 function s = spl_interpol(x,y)
     n = length(x);
     if (n < 3)
-        error(['Le nombre d"Ã©lÃ©ments de X doit Ãªtre > 2']);
+        error(['Le nombre d elements de X doit �tre > 2']);
     elseif (min(size(x))~=1 || min(size(y))~=1)
         error(['les arguments doivent Ãªtre des vecteurs']);        
     elseif (length(y) ~= n)
-        error(['Les vecteurs X & Y doivent avoir la mÃªme taille']);
+        error(['Les vecteurs X & Y doivent avoir la m�me taille']);
     elseif (min( x(2:n)-x(1:n-1) ) <= 0)
-        error(['X(i) doit Ãªtre un vecteur strictement croissant']);
+        error(['X(i) doit �tre un vecteur strictement croissant']);
     else 
         % on manipule vecteurs-colonnes
         if(size(x,2)~=1) x = x'; end;
