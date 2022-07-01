@@ -1,2 +1,2 @@
-# Cours d'analyse numérique
-Cours d'analyse numérique BA2, algorithmes et résolutions des TPs.
+# Numerical analysis course
+BA2 numerical analysis course, algorithms and resolutions of TP's and exams.
